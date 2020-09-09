@@ -1,15 +1,15 @@
-# 1. Copy this file to /etc/systemd/system
-
-# 2. Change the username and working directory
-# to that of your unprivileged service user.
+# 👋 Hey you! Yeah, you! 👋
+# Copy this file to /etc/systemd/system
 
 [Unit]
+# ⬇️ Change this name to describe the function of the port you're opening
 Description=autossh-http
 # ⬇️ Tells systemd to start the service after establishing a network connection
 After=network.target
 
 [Service]
 Type=simple
+# ⬇️ Change to the username of your unprivileged service user
 User=username
 WorkingDirectory=/home/username
 # ⬇️ Instructs systemd to start the autossh daemon and forward TCP traffic
