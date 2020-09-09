@@ -1,0 +1,23 @@
+# 1. Copy this file to /etc/systemd/system
+
+# 2. Change the username and working directory
+# to that of your unprivileged service user.
+
+[Unit]
+Description=autossh-http
+# ⬇️ Tells systemd to start the service after establishing a network connection
+After=network.target
+
+[Service]
+Type=simple
+User=username
+WorkingDirectory=/home/username
+# ⬇️ Instructs systemd to start the autossh daemon and forward TCP traffic
+# on port 80 of the proxy server on port 80 on the localhost
+ExecStart=/usr/bin/autossh -R 80:127.0.0.1:80 -N root@host.com
+Restart=on-failure
+
+# Makes the daemon a systemwide daemon
+[Install]
+WantedBy=multi-user.target
+
